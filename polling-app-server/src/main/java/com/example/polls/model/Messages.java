@@ -44,7 +44,7 @@ public class Messages extends DateAudit {
 		super();
 	}
 
-	public Messages(@NotBlank Long senderId, @NotBlank Long recieverId, @NotBlank @Size(max = 1000) String content) {
+	public Messages(Long senderId, Long recieverId, String content) {
 		super();
 		this.senderId = senderId;
 		this.recieverId = recieverId;
