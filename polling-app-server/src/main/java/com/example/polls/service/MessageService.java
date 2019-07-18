@@ -12,14 +12,14 @@ public class MessageService {
 	@Autowired
     private MessagesRepository messagesRepository;
 
-	public ArrayList<Messages> getMessages(Long sender, Long reciever) {
+	public ArrayList<Messages> getMessages(Long recieverId, Long senderId) {
 		ArrayList<Messages> chatHistory = new ArrayList<>();
 //		ArrayList<Messages> myChatHistory = new ArrayList<>();
 		 for(Messages m: messagesRepository.findAll()) {
-			 if(m.getRecieverId().equals(reciever) && m.getSenderId().equals(sender)) {
+			 if(m.getRecieverId().equals(recieverId) && m.getSenderId().equals(senderId)) {
 				 chatHistory.add(m);
 			 }
-			 else if(m.getSenderId().equals(sender) && m.getRecieverId().equals(reciever)) {
+			 else if(m.getSenderId().equals(senderId) && m.getRecieverId().equals(recieverId)) {
 				 chatHistory.add(m);
 			 }
 			 else { /* Do nothing*/ ; }

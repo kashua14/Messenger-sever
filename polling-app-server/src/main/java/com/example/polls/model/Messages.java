@@ -23,10 +23,8 @@ public class Messages extends DateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private Long senderId;
 
-    @NotBlank
     private Long recieverId;
 
 

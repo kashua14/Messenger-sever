@@ -38,16 +38,10 @@ public class MessagesController {
 
     private static final Logger logger = LoggerFactory.getLogger(MessagesController.class);
 
-    @GetMapping("/messages/me")
-    public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserSummary userSummary = new UserSummary(currentUser.getUsername());
-        return userSummary;
-    }
-    
     // getting previous chats
-    @GetMapping("/chats/chathistory/{reciever}/{sender}")
-    public ArrayList<Messages> getChatHistory(@PathVariable Long reciever, @PathVariable Long sender) {
-		return messageService.getMessages(reciever, sender);
+    @GetMapping("/chats/chathistory/{recieverId}/{senderId}")
+    public ArrayList<Messages> getChatHistory(@PathVariable Long recieverId, @PathVariable Long senderId) {
+		return messageService.getMessages(recieverId, senderId);
     }
     
 //    @GetMapping("/messages/checkRecieverAvailability")
@@ -57,12 +51,14 @@ public class MessagesController {
 //    }
     
     @PostMapping("/chats/chatroom")
-    public void sendMessage(@Valid @RequestBody SentMessage sentMessage) {
-		if(userRepository.existsByIdIn(sentMessage.getSender_id()) && userRepository.existsByIdIn(sentMessage.getReciever_id())) {
+    public boolean sendMessage(@Valid @RequestBody SentMessage sentMessage) {
+		if(userRepository.existsByIdIn(sentMessage.getSenderId()) && userRepository.existsByIdIn(sentMessage.getRecieverId())) {
 			// Save message
-			Messages messages = new Messages(sentMessage.getSender_id(), sentMessage.getReciever_id(), sentMessage.getContent());
+			Messages messages = new Messages(sentMessage.getSenderId(), sentMessage.getRecieverId(), sentMessage.getContent());
 			messagesRepository.save(messages);
+			return true;
         }
+		return false;
 	}
     
 

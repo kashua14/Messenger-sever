@@ -1,26 +1,18 @@
 package com.example.polls.payload;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
- * Created by rajeevkumarsingh on 02/08/17.
+ * Created by kashua14 on 18/07/19.
  */
 
 public class SentMessage {
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	
     private Long id;
 
-    @NotBlank
-    private Long sender_id;
+    private Long senderId;
 
-    @NotBlank
-    private Long reciever_id;
+    private Long recieverId;
 
     @NotBlank
     @Size(max = 1000)
@@ -34,20 +26,20 @@ public class SentMessage {
 		this.id = id;
 	}
 
-	public Long getSender_id() {
-		return sender_id;
+	public Long getSenderId() {
+		return senderId;
 	}
 
-	public void setSender_id(Long sender_id) {
-		this.sender_id = sender_id;
+	public void setSenderId(Long senderId) {
+		this.senderId = senderId;
 	}
 
-	public Long getReciever_id() {
-		return reciever_id;
+	public Long getRecieverId() {
+		return recieverId;
 	}
 
-	public void setReciever_id(Long reciever_id) {
-		this.reciever_id = reciever_id;
+	public void setRecieverId(Long recieverId) {
+		this.recieverId = recieverId;
 	}
 
 	public String getContent() {
