@@ -2,7 +2,6 @@ package com.example.polls.model;
 
 import com.example.polls.model.audit.DateAudit;
 
-import java.util.HashSet;
 import java.util.Set;
 
 //import org.hibernate.annotations.NaturalId;

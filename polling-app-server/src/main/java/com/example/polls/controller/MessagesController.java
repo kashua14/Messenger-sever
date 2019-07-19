@@ -39,16 +39,10 @@ public class MessagesController {
     private static final Logger logger = LoggerFactory.getLogger(MessagesController.class);
 
     // getting previous chats
-    @GetMapping("/chats/chathistory/{recieverId}/{senderId}")
+    @GetMapping("/chats/chatHistory/{senderId}/{recieverId}")
     public ArrayList<Messages> getChatHistory(@PathVariable Long recieverId, @PathVariable Long senderId) {
-		return messageService.getMessages(recieverId, senderId);
+		return messageService.getMessages(senderId, recieverId);
     }
-    
-//    @GetMapping("/messages/checkRecieverAvailability")
-//    public UserIdentityAvailability checkRecieverAvailability(@RequestBody Long reciever) {
-//        Boolean isAvailable = !messagesRepository.existsByRecieverId(reciever);
-//        return new UserIdentityAvailability(isAvailable);
-//    }
     
     @PostMapping("/chats/chatroom")
     public boolean sendMessage(@Valid @RequestBody SentMessage sentMessage) {
