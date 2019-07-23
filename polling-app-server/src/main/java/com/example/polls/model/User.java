@@ -51,12 +51,15 @@ public class User extends DateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     
-    @ManyToMany(mappedBy = "sentMessages")
-    Set<Messages> sends;
+//    @OneToMany(mappedBy="user")
+//    private Set<Messages> messages;
+    
+//    @OneToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY,
+//            mappedBy = "user")
+//    private Set<Messages> messages = new HashSet<>();
 
-    public User() {
-
-    }
+    public User() {}
 
     public User(String name, String username, String email, String password) {
         this.name = name;
