@@ -2,37 +2,20 @@ package com.example.polls.payload;
 
 import javax.validation.constraints.*;
 
+//import com.example.polls.model.User;
+
 /**
  * Created by kashua14 on 18/07/19.
  */
 
 public class SentMessage {
-	
-    private Long id;
 
-    private Long senderId;
-
+	@NotNull
     private Long recieverId;
 
     @NotBlank
     @Size(max = 1000)
     private String content;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getSenderId() {
-		return senderId;
-	}
-
-	public void setSenderId(Long senderId) {
-		this.senderId = senderId;
-	}
 
 	public Long getRecieverId() {
 		return recieverId;

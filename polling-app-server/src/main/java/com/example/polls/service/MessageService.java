@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.polls.model.Messages;
+import com.example.polls.model.User;
 import com.example.polls.repository.MessagesRepository;
 
 @Service
@@ -14,19 +15,16 @@ public class MessageService {
 
 	public ArrayList<Messages> getMessages(Long senderId, Long recieverId) {
 		ArrayList<Messages> chatHistory = new ArrayList<>();
-//		ArrayList<Messages> myChatHistory = new ArrayList<>();
 		 for(Messages m: messagesRepository.findAll()) {
-			 if(m.getRecieverId().equals(recieverId) && m.getSenderId().equals(senderId)) {
+			 if(m.getRecieverId().equals(recieverId) && (m.getSenderId().equals(senderId))) {
 				 chatHistory.add(m);
 			 }
-			 else if(m.getSenderId().equals(recieverId) && m.getRecieverId().equals(senderId)) {
+			 else if(m.getRecieverId().equals(senderId) && (m.getSenderId().equals(recieverId))) {
 				 chatHistory.add(m);
 			 }
 			 else { /* Do nothing*/ ; }
 		 }
 		 return chatHistory;
 	}
-	
-	
 	
 }

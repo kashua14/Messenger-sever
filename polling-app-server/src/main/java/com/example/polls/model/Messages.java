@@ -1,16 +1,15 @@
 package com.example.polls.model;
 
-import com.example.polls.model.audit.DateAudit;
-
-import java.util.Set;
-
-//import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
-//import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-//import java.util.HashSet;
-//import java.util.Set;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.example.polls.model.audit.DateAudit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Created by kashua14 on 14/07/19.
@@ -22,46 +21,47 @@ public class Messages extends DateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long senderId;
-
+    @NotNull
     private Long recieverId;
-
+    
+    @NotNull
+    private Long senderId;
 
     @NotBlank
     @Size(max = 1000)
     private String content;
+
+//	@ManyToOne
+//    @JoinColumn(name="user_id", nullable=false)
+//    private User user;
+	
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "User_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnore
+//    private User user;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "messages_user",
-            joinColumns = @JoinColumn(name = "messages_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    Set<User> sentMessages;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id", nullable = true)
+//    private User user;
+	
+//  Constructors
+	public Messages() {}
 
-	public Messages() {
+	public Messages(Long recieverId, String content, Long senderId) {
 		super();
-	}
-
-	public Messages(Long senderId, Long recieverId, String content) {
-		super();
-		this.senderId = senderId;
 		this.recieverId = recieverId;
 		this.content = content;
+		this.senderId = senderId;
 	}
 
+//  getters and setters
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getSenderId() {
-		return senderId;
-	}
-
-	public void setSenderId(Long senderId) {
-		this.senderId = senderId;
 	}
 
 	public Long getRecieverId() {
@@ -80,13 +80,20 @@ public class Messages extends DateAudit {
 		this.content = content;
 	}
 
-	public Set<User> getSentMessages() {
-		return sentMessages;
+	public Long getSenderId() {
+		return senderId;
 	}
 
-	public void setSentMessages(Set<User> sentMessages) {
-		this.sentMessages = sentMessages;
+	public void setSenderId(Long senderId) {
+		this.senderId = senderId;
 	}
 	
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 	
 }
