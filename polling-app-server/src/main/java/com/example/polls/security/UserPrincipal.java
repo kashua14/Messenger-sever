@@ -96,7 +96,7 @@ public class UserPrincipal implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

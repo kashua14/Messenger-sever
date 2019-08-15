@@ -1,19 +1,11 @@
 package com.example.polls.controller;
 
-import com.example.polls.exception.AppException;
-//import com.example.polls.model.Messages;
-import com.example.polls.model.Role;
-import com.example.polls.model.RoleName;
-import com.example.polls.model.User;
-import com.example.polls.payload.ApiResponse;
-import com.example.polls.payload.JwtAuthenticationResponse;
-import com.example.polls.payload.LoginRequest;
-//import com.example.polls.payload.SentMessage;
-import com.example.polls.payload.SignUpRequest;
-//import com.example.polls.repository.MessagesRepository;
-import com.example.polls.repository.RoleRepository;
-import com.example.polls.repository.UserRepository;
-import com.example.polls.security.JwtTokenProvider;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +20,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.Collections;
+import com.example.polls.exception.AppException;
+//import com.example.polls.model.Messages;
+import com.example.polls.model.Role;
+import com.example.polls.model.RoleName;
+import com.example.polls.model.User;
+import com.example.polls.payload.ApiResponse;
+import com.example.polls.payload.JwtAuthenticationResponse;
+import com.example.polls.payload.LoginRequest;
+//import com.example.polls.payload.SentMessage;
+import com.example.polls.payload.SignUpRequest;
+import com.example.polls.payload.UserSummary;
+//import com.example.polls.repository.MessagesRepository;
+import com.example.polls.repository.RoleRepository;
+import com.example.polls.repository.UserRepository;
+import com.example.polls.security.JwtTokenProvider;
 
 /**
- * Created by rajeevkumarsingh on 02/08/17.
+ * Created by kashua14
  */
 @RestController
 @RequestMapping("/api/auth")
@@ -68,8 +72,9 @@ public class AuthController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = tokenProvider.generateToken(authentication);
+        
+       
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 

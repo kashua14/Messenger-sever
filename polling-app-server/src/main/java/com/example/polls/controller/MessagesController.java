@@ -13,19 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.stereotype.Controller;
 import com.example.polls.model.Messages;
 import com.example.polls.payload.SentMessage;
-import com.example.polls.payload.UserIdentityAvailability;
-import com.example.polls.payload.UserSummary;
 import com.example.polls.repository.MessagesRepository;
 import com.example.polls.repository.UserRepository;
-import com.example.polls.security.CurrentUser;
-import com.example.polls.security.UserPrincipal;
 import com.example.polls.service.MessageService;
 
 @RestController
@@ -43,11 +34,11 @@ public class MessagesController {
 
     private static final Logger logger = LoggerFactory.getLogger(MessagesController.class);
     
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/chats/chatHistory/{senderId}/{recieverId}")
-    public SentMessage sendMessage(@Payload SentMessage sentMessage) {
-        return sentMessage;
-    }
+//    @MessageMapping("/chat.sendMessage")
+//    @SendTo("/chats/chatHistory/{senderId}/{recieverId}")
+//    public SentMessage sendMessage(@Payload SentMessage sentMessage) {
+//        return sentMessage;
+//    }
 
     // getting previous chats
     @GetMapping("/chats/chatHistory/{senderId}/{recieverId}")
@@ -56,11 +47,14 @@ public class MessagesController {
     }
     
     @PostMapping("/chats/chatroom")
-    public boolean sendMessage(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody SentMessage sentMessage ) {
+    public boolean sendMessage(@Valid @RequestBody SentMessage sentMessage ) {
 //		if(userRepository.existsByIdIn(sentMessage.getRecieverId())) {
 //			// Save message
-			Messages messages = new Messages(sentMessage.getRecieverId(), sentMessage.getContent(), currentUser.getId());
+			Messages messages = new Messages(sentMessage.getRecieverId(), sentMessage.getContent(), sentMessage.getSenderId());
 			messagesRepository.save(messages);
+			
+//			@PostUpdate
+//			Consumer sentMsg = new Consumer(messages);
 			return true;
 //        }
 //		return false;

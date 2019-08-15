@@ -11,7 +11,11 @@ import com.example.polls.service.PollService;
 import com.example.polls.security.CurrentUser;
 import com.example.polls.util.AppConstants;
 
+//import sessions.ActiveUsers.ActiveUserStore;
+
 import java.util.ArrayList;
+
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +27,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class UserController {
 
+//	@Autowired
+//    ActiveUserStore activeUserStore;
+	
     @Autowired
     private UserRepository userRepository;
 
@@ -36,6 +43,12 @@ public class UserController {
     private PollService pollService;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    
+//    @GetMapping("/loggedUsers")
+//    public List<String> getLoggedUsers(Locale locale, Model model) {
+//        model.addAttribute("users", activeUserStore.getUsers());
+//        return  activeUserStore.getUsers();
+//    }
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
@@ -78,7 +91,19 @@ public class UserController {
 
         return userProfile;
     }
+    
+    @PatchMapping("/users/status")
+    public User updateUserStatus(@Valid @RequestBody LoginRequest loginRequest){
+    	User user = userRepository.findByEmail(loginRequest.getUsernameOrEmail())
+    			.orElseThrow(() -> new ResourceNotFoundException("User", "email", loginRequest.getUsernameOrEmail()));
+    	user.setStatus(1);
+    	userRepository.save(user);
+    	return user;
+    }
 
+    
+    
+    
     @GetMapping("/users/{username}/polls")
     public PagedResponse<PollResponse> getPollsCreatedBy(@PathVariable(value = "username") String username,
                                                          @CurrentUser UserPrincipal currentUser,

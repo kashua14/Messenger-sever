@@ -34,6 +34,8 @@ public class User extends DateAudit {
     @NotBlank
     @Size(max = 15)
     private String username;
+    
+    private int status;
 
     @NaturalId
     @NotBlank
@@ -51,6 +53,12 @@ public class User extends DateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "user_status",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "status_id"))
+//    private Set<Status> status = new HashSet<>();
+    
 //    @OneToMany(mappedBy="user")
 //    private Set<Messages> messages;
     
@@ -66,8 +74,9 @@ public class User extends DateAudit {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.status = 0;
     }
-
+    
     public Long getId() {
         return id;
     }
@@ -108,11 +117,22 @@ public class User extends DateAudit {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+    
+    public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+	
+    
 }
