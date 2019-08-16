@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.stereotype.Controller;
 import com.example.polls.model.Messages;
 import com.example.polls.payload.SentMessage;
 import com.example.polls.repository.MessagesRepository;
@@ -34,11 +39,11 @@ public class MessagesController {
 
     private static final Logger logger = LoggerFactory.getLogger(MessagesController.class);
     
-//    @MessageMapping("/chat.sendMessage")
-//    @SendTo("/chats/chatHistory/{senderId}/{recieverId}")
-//    public SentMessage sendMessage(@Payload SentMessage sentMessage) {
-//        return sentMessage;
-//    }
+    @MessageMapping("/chat.sendMessage")
+    @SendTo("/chats/chatHistory/{senderId}/{recieverId}")
+    public SentMessage sendMessage(@Payload SentMessage sentMessage) {
+        return sentMessage;
+    }
 
     // getting previous chats
     @GetMapping("/chats/chatHistory/{senderId}/{recieverId}")
@@ -47,10 +52,10 @@ public class MessagesController {
     }
     
     @PostMapping("/chats/chatroom")
-    public boolean sendMessage(@Valid @RequestBody SentMessage sentMessage ) {
+    public boolean sendMessage(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody SentMessage sentMessage ) {
 //		if(userRepository.existsByIdIn(sentMessage.getRecieverId())) {
 //			// Save message
-			Messages messages = new Messages(sentMessage.getRecieverId(), sentMessage.getContent(), sentMessage.getSenderId());
+			Messages messages = new Messages(sentMessage.getRecieverId(), sentMessage.getContent(), currentUser.getId());
 			messagesRepository.save(messages);
 			
 //			@PostUpdate

@@ -19,11 +19,16 @@ public interface MessagesRepository extends JpaRepository<Messages, Long> {
 	 
     List<Messages> findByIdIn(List<Long> userIds);
 
-    Optional<Messages> findByRecieverId(Long senderId);
+    Optional<Messages> findByRecieverId(Long recieverId);
+//    
+//    Optional<Messages> findByUserId(Long SenderId);
+    
+//    Optional<Messages> findByIdAndUserId(Long id, Long UserId);
+    
+    Boolean existsByRecieverId(Long recieverId);
     
     boolean existsByCreatedAt(LocalDateTime createdAt);
     
     Boolean existsBySenderId(Long senderId);
 
-    Boolean existsByRecieverId(Long recieverId);
 }
