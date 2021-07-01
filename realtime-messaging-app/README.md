@@ -6,8 +6,8 @@ Incase you want to have some visual on the this API then I will suggest you go t
 
 ## How to it Setup
 
-- First clone/fork the repo onto your machine.
-- Open the cloned/forked folder from your favourite editor (Mine is eclipse).
+- First clone the repo onto your machine.
+- Open the cloned folder from your favourite editor (Mine is eclipse).
 - ## For Eclipse IDE Users: 
     - After lauching your IDE, select `File` in the top left corner of the IDE.
     - In the drop down list select `import..` an dialog will appear.
