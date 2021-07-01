@@ -4,7 +4,7 @@ This project uses spring-boot framework and it is basically a back-end project.
 
 Incase you want to have some visual on the this API then I will suggest you go to [Realtime-Messaging-App-UI](https://github.com/kashua14/MESSENGER). In that repo you will have the UI that is implemented in ReactJS.
 
-## How to it Setup
+## How to Set it up
 
 - First clone the repo onto your machine.
 - Open the cloned folder from your favourite editor (Mine is eclipse).
