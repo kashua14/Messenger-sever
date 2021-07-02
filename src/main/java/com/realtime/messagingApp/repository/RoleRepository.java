@@ -1,11 +1,12 @@
 package com.realtime.messagingApp.repository;
 
-import com.realtime.messagingApp.model.Role;
-import com.realtime.messagingApp.model.RoleName;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import com.realtime.messagingApp.model.Role;
+import com.realtime.messagingApp.model.RoleName;
 
 /**
  * Created by rajeevkumarsingh on 02/08/17.

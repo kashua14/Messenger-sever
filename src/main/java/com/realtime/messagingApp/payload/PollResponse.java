@@ -1,9 +1,9 @@
 package com.realtime.messagingApp.payload;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.time.Instant;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class PollResponse {
     private Long id;

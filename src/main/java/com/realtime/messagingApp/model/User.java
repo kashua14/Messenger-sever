@@ -1,13 +1,25 @@
  package com.realtime.messagingApp.model;
 
-import com.realtime.messagingApp.model.audit.DateAudit;
-import org.hibernate.annotations.NaturalId;
-import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+
+import org.hibernate.annotations.NaturalId;
+
+import com.realtime.messagingApp.model.audit.DateAudit;
 
 /**
  * Created by joshua on 01/08/17.
@@ -34,7 +46,7 @@ public class User extends DateAudit {
     @NotBlank
     @Size(max = 15)
     private String username;
-    
+
     private int status;
 
     @NaturalId
@@ -52,10 +64,10 @@ public class User extends DateAudit {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-    
+
 //    @OneToMany(mappedBy="user")
 //    private Set<Messages> messages;
-    
+
 //    @OneToMany(cascade = CascadeType.ALL,
 //            fetch = FetchType.LAZY,
 //            mappedBy = "user")
@@ -70,7 +82,7 @@ public class User extends DateAudit {
         this.password = password;
         this.status = 0;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -111,7 +123,7 @@ public class User extends DateAudit {
         this.password = password;
     }
 
-    
+
     public int getStatus() {
 		return status;
 	}
@@ -127,6 +139,6 @@ public class User extends DateAudit {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-	
-    
+
+
 }

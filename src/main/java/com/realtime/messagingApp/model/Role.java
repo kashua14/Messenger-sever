@@ -1,10 +1,18 @@
 package com.realtime.messagingApp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.NaturalId;
-import javax.persistence.*;
 
 /**
- * Created by rajeevkumarsingh on 01/08/17.
+ * Created by Joshua on 01/08/17.
  */
 @Entity
 @Table(name = "roles")

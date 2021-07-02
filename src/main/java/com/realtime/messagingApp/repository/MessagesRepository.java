@@ -1,13 +1,13 @@
 package com.realtime.messagingApp.repository;
 
-import com.realtime.messagingApp.model.Messages;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.realtime.messagingApp.model.Messages;
 
 /**
  * Created by rajeevkumarsingh on 02/08/17.

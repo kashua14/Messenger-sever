@@ -1,7 +1,7 @@
 package com.realtime.messagingApp.model;
 
 /**
- * Created by rajeevkumarsingh on 07/12/17.
+ * Created by Joshua on 07/12/17.
  */
 public enum  RoleName {
     ROLE_USER,

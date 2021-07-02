@@ -1,13 +1,14 @@
 package com.realtime.messagingApp.model.audit;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.MappedSuperclass;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
-import javax.persistence.MappedSuperclass;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Created by rajeevkumarsingh on 19/08/17.
+ * Created by Joshua on 19/08/17.
  */
 
 @MappedSuperclass

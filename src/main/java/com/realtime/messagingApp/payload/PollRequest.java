@@ -1,10 +1,11 @@
 package com.realtime.messagingApp.payload;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 public class PollRequest {
     @NotBlank

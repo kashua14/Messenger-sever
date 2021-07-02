@@ -1,15 +1,15 @@
 package com.realtime.messagingApp.util;
 
+import java.time.Instant;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.realtime.messagingApp.model.Poll;
 import com.realtime.messagingApp.model.User;
 import com.realtime.messagingApp.payload.ChoiceResponse;
 import com.realtime.messagingApp.payload.PollResponse;
 import com.realtime.messagingApp.payload.UserSummary;
-
-import java.time.Instant;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ModelMapper {
 

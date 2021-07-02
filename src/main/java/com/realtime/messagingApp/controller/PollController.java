@@ -1,7 +1,29 @@
 package com.realtime.messagingApp.controller;
 
-import com.realtime.messagingApp.model.*;
-import com.realtime.messagingApp.payload.*;
+import java.net.URI;
+
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.realtime.messagingApp.model.Poll;
+import com.realtime.messagingApp.payload.ApiResponse;
+import com.realtime.messagingApp.payload.PagedResponse;
+import com.realtime.messagingApp.payload.PollRequest;
+import com.realtime.messagingApp.payload.PollResponse;
+import com.realtime.messagingApp.payload.VoteRequest;
 import com.realtime.messagingApp.repository.PollRepository;
 import com.realtime.messagingApp.repository.UserRepository;
 import com.realtime.messagingApp.repository.VoteRepository;
@@ -9,32 +31,14 @@ import com.realtime.messagingApp.security.CurrentUser;
 import com.realtime.messagingApp.security.UserPrincipal;
 import com.realtime.messagingApp.service.PollService;
 import com.realtime.messagingApp.util.AppConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import javax.validation.Valid;
-import java.net.URI;
 
 /**
- * Created by rajeevkumarsingh on 20/11/17.
+ * Created by Joshua on 20/11/17.
  */
 
 @RestController
 @RequestMapping("/api/polls")
 public class PollController {
-
-    @Autowired
-    private PollRepository pollRepository;
-
-    @Autowired
-    private VoteRepository voteRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private PollService pollService;

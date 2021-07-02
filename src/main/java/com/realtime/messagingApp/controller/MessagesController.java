@@ -7,17 +7,16 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.stereotype.Controller;
+
 import com.realtime.messagingApp.model.Messages;
 import com.realtime.messagingApp.payload.SentMessage;
 import com.realtime.messagingApp.repository.MessagesRepository;
@@ -39,8 +38,6 @@ public class MessagesController {
 	@Autowired
     UserRepository userRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(MessagesController.class);
-    
     @MessageMapping("/chat.sendMessage")
     @SendTo("/chats/chatHistory/{senderId}/{recieverId}")
     public SentMessage sendMessage(@Payload SentMessage sentMessage) {

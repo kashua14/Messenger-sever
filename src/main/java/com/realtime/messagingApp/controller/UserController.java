@@ -1,16 +1,5 @@
 package com.realtime.messagingApp.controller;
 
-import com.realtime.messagingApp.exception.ResourceNotFoundException;
-import com.realtime.messagingApp.model.User;
-import com.realtime.messagingApp.payload.*;
-import com.realtime.messagingApp.repository.PollRepository;
-import com.realtime.messagingApp.repository.UserRepository;
-import com.realtime.messagingApp.repository.VoteRepository;
-import com.realtime.messagingApp.security.UserPrincipal;
-import com.realtime.messagingApp.service.PollService;
-import com.realtime.messagingApp.security.CurrentUser;
-import com.realtime.messagingApp.util.AppConstants;
-
 //import sessions.ActiveUsers.ActiveUserStore;
 
 import java.util.ArrayList;
@@ -21,7 +10,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.realtime.messagingApp.exception.ResourceNotFoundException;
+import com.realtime.messagingApp.model.User;
+import com.realtime.messagingApp.payload.LoginRequest;
+import com.realtime.messagingApp.payload.PagedResponse;
+import com.realtime.messagingApp.payload.PollResponse;
+import com.realtime.messagingApp.payload.UserIdentityAvailability;
+import com.realtime.messagingApp.payload.UserProfile;
+import com.realtime.messagingApp.payload.UserSummary;
+import com.realtime.messagingApp.repository.PollRepository;
+import com.realtime.messagingApp.repository.UserRepository;
+import com.realtime.messagingApp.repository.VoteRepository;
+import com.realtime.messagingApp.security.CurrentUser;
+import com.realtime.messagingApp.security.UserPrincipal;
+import com.realtime.messagingApp.service.PollService;
+import com.realtime.messagingApp.util.AppConstants;
 
 @RestController
 @RequestMapping("/api")

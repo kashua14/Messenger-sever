@@ -1,15 +1,14 @@
 package com.realtime.messagingApp.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import com.realtime.messagingApp.model.audit.DateAudit;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Created by kashua14 on 14/07/19.
@@ -23,7 +22,7 @@ public class Messages extends DateAudit {
 
     @NotNull
     private Long recieverId;
-    
+
     @NotNull
     private Long senderId;
 
@@ -34,17 +33,17 @@ public class Messages extends DateAudit {
 //	@ManyToOne
 //    @JoinColumn(name="user_id", nullable=false)
 //    private User user;
-	
+
 //	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "User_id", nullable = false)
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonIgnore
 //    private User user;
-    
+
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id", nullable = true)
 //    private User user;
-	
+
 //  Constructors
 	public Messages() {}
 
@@ -87,7 +86,7 @@ public class Messages extends DateAudit {
 	public void setSenderId(Long senderId) {
 		this.senderId = senderId;
 	}
-	
+
 //	public User getUser() {
 //		return user;
 //	}
@@ -95,5 +94,5 @@ public class Messages extends DateAudit {
 //	public void setUser(User user) {
 //		this.user = user;
 //	}
-	
+
 }

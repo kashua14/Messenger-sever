@@ -1,18 +1,13 @@
 package com.realtime.messagingApp.service;
 
-import com.realtime.messagingApp.exception.BadRequestException;
-import com.realtime.messagingApp.exception.ResourceNotFoundException;
-import com.realtime.messagingApp.model.*;
-import com.realtime.messagingApp.payload.PagedResponse;
-import com.realtime.messagingApp.payload.PollRequest;
-import com.realtime.messagingApp.payload.PollResponse;
-import com.realtime.messagingApp.payload.VoteRequest;
-import com.realtime.messagingApp.repository.PollRepository;
-import com.realtime.messagingApp.repository.UserRepository;
-import com.realtime.messagingApp.repository.VoteRepository;
-import com.realtime.messagingApp.security.UserPrincipal;
-import com.realtime.messagingApp.util.AppConstants;
-import com.realtime.messagingApp.util.ModelMapper;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +18,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import com.realtime.messagingApp.exception.BadRequestException;
+import com.realtime.messagingApp.exception.ResourceNotFoundException;
+import com.realtime.messagingApp.model.Choice;
+import com.realtime.messagingApp.model.ChoiceVoteCount;
+import com.realtime.messagingApp.model.Poll;
+import com.realtime.messagingApp.model.User;
+import com.realtime.messagingApp.model.Vote;
+import com.realtime.messagingApp.payload.PagedResponse;
+import com.realtime.messagingApp.payload.PollRequest;
+import com.realtime.messagingApp.payload.PollResponse;
+import com.realtime.messagingApp.payload.VoteRequest;
+import com.realtime.messagingApp.repository.PollRepository;
+import com.realtime.messagingApp.repository.UserRepository;
+import com.realtime.messagingApp.repository.VoteRepository;
+import com.realtime.messagingApp.security.UserPrincipal;
+import com.realtime.messagingApp.util.AppConstants;
+import com.realtime.messagingApp.util.ModelMapper;
 
 @Service
 public class PollService {
@@ -124,7 +129,7 @@ public class PollService {
         // Retrieve all poll details from the voted pollIds.
         List<Long> pollIds = userVotedPollIds.getContent();
 
-        Sort sort = new Sort(Sort.Direction.DESC, "createdAt");
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
         List<Poll> polls = pollRepository.findByIdIn(pollIds, sort);
 
         // Map Polls to PollResponses containing vote counts and poll creator details

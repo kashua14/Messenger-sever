@@ -1,7 +1,6 @@
 package com.realtime.messagingApp.controller;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.validation.Valid;
@@ -30,7 +29,6 @@ import com.realtime.messagingApp.payload.JwtAuthenticationResponse;
 import com.realtime.messagingApp.payload.LoginRequest;
 //import com.realtime.messagingApp.payload.SentMessage;
 import com.realtime.messagingApp.payload.SignUpRequest;
-import com.realtime.messagingApp.payload.UserSummary;
 //import com.realtime.messagingApp.repository.MessagesRepository;
 import com.realtime.messagingApp.repository.RoleRepository;
 import com.realtime.messagingApp.repository.UserRepository;
