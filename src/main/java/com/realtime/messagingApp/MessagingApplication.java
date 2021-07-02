@@ -3,6 +3,7 @@ package com.realtime.messagingApp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,7 @@ import java.util.TimeZone;
 		MessagingApplication.class,
 		Jsr310JpaConverters.class
 })
-public class MessagingApplication {
+public class MessagingApplication extends SpringBootServletInitializer {
 
 	@PostConstruct
 	void init() {
