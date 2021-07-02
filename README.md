@@ -17,7 +17,7 @@ Incase you want to have some visual on the this API then I will suggest you go t
     - Navigate to your PHPMyAdmin and create a database where your data will be stored.
     - Navigate to the `application.properties` file found in the `src/main/resources` folder. 
     - Change the following lines of code to your appropriate configurations.
-        ```
+        ```java
         spring.datasource.url= jdbc:mysql://localhost:3306/<database-name>?useSSL=false&serverTimezone=Africa/Kampala&useLegacyDatetimeCode=false
         spring.datasource.username= // username of your database E.g. root 
         spring.datasource.password= // password of your database E.g. leave it blank incase you don't have one 
